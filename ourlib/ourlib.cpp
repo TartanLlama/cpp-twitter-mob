@@ -1,18 +1,16 @@
 #include <string_view>
-#include "optional.hpp"
+#include <string>
 #include "ourlib.hpp"
-namespace {
-	/// Interprets a signed integer value in the given string.
-	/// Returns an empty optional if the string does not represent a valid int.
-	tl::optional<int> safe_stoi(std::string_view sv);
-
-	/// Returns the square root of the given int.
-	/// The result is empty if `i` is negative.
-	tl::optional<double> safe_sqrt(int i);
-
-	/// Returns the integer representation of `d` if it is a whole number
-	/// If `d` is not a whole number, returns an empty optional
-	tl::optional<int> safe_dtoi(double d);
+namespace ourlib {
+	namespace detail {
+		tl::optional<int> safe_stoi(std::string_view sv) {
+			try {
+				return std::stoi(std::string(sv));
+			} catch (std::exception) {
+				return tl::nullopt;
+			}
+		}
+	}
 }
 
 int ourlib::brand_quotient(std::string_view sv) {

@@ -1,0 +1,3 @@
+notes:
+
+Timer for mob/pair programming
